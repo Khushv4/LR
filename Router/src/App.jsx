@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Footer from './components/Footer/Footer'
 
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
 
   return (
     <>
-      <h1 className='bg-green-600 font-bold text-center'>React Router</h1>
+     
     </>
   )
 }
