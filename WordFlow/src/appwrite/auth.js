@@ -38,14 +38,18 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log("appwrite service:: getCurrentUser::error", error);
+      console.log("appwrite::service:: getCurrentUser::error", error);
     }
     return null;
   }
 
   async logout(){
     try {
-      await this.account.deleteSession();
+      const session = await this.account.getSession('current');
+      console.log('Current Session:', session.$id);
+      await this.account.deleteSession(session.$id);
+
+      
     } catch (error) {
       console.log("apprite service::logout::error", error)
     }

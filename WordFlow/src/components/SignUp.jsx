@@ -35,7 +35,7 @@ function SignUp() {
                     </span>
                 </div>
                 <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
-                <p className="mt-2 text-center text-base text-black/60">
+                <p className="mt-2 mb-4 text-center text-base text-black/60">
                     Already have an account?&nbsp;
                     <Link
                         to="/login"
@@ -48,9 +48,10 @@ function SignUp() {
 
                 <form onSubmit={handleSubmit(create)}>
 
-                <div className='sapce-y-5'>
+                <div className='space-y-4 center'>
                   <Input
                   label = "Full Name:"
+                  className='ml-5 px-2 py-0.5'
                   placeholder = "Enter your name"
                   {...register("name", {
                     required:true,
@@ -59,8 +60,9 @@ function SignUp() {
                   />
 
                   <Input
-                              label = "Email"
+                              label = "Email:"
                               placeholder = "Enter your email"
+                              className='ml-13 px-2 py-0.5'
                               type = "email"
                               {...register("email", {
                                 required: true,
@@ -69,15 +71,16 @@ function SignUp() {
                               />
 
                               <Input
-                              label="Password"
+                              label="Password:"
                               type="password"
+                              className="ml-6 px-2 py-0.5"
                               placeholder="Enter your password"
                               {...register("password", {
                                 required:true,
                               })}
                               />
 
-                              <Button type = "submit" className='w-full'>Create Account</Button>
+                              <Button type = "submit" className='w-full '>Create Account</Button>
 
                 </div>
 

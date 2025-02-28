@@ -52,8 +52,9 @@ function Login() {
         className='mt-8'>
           <div className='space-y-5'>
             <Input
-            label = "Email"
+            label = "Email:"
             placeholder = "Enter your email"
+            className='ml-13 px-2 py-0.5'
             type = "email"
             {...register("email", {
               required: true,
@@ -62,8 +63,9 @@ function Login() {
             />
 
             <Input
-            label = "Password"
+            label = "Password:"
             placeholder = "Enter password"
+            className="ml-6 px-2 py-0.5"
             type = "password"
             {...register("password", {
               required:true,

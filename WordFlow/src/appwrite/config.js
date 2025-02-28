@@ -73,7 +73,7 @@ try {
       )
     } catch (error) {
       console.log("appwrite::service::getpost::error", error);
-      
+      return false
     }
   }
 
@@ -95,7 +95,7 @@ try {
 
   async uploatFile(file){
     try {
-      return this.bucket.createFile(
+      return await this.bucket.createFile(
         conf.appwriteBucketId,
         ID.unique(),
         file
