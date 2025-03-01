@@ -45,10 +45,8 @@ export class AuthService {
 
   async logout(){
     try {
-      const session = await this.account.getSession('current');
-      console.log('Current Session:', session.$id);
-      await this.account.deleteSession(session.$id);
-
+      await this.account.deleteSessions();
+      
       
     } catch (error) {
       console.log("apprite service::logout::error", error)

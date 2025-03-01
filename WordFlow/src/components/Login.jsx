@@ -1,6 +1,6 @@
 import React, {useState, usestate} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import {login as authlogin} from '../store/authSlice'
+import {login as authLogin} from '../store/authSlice'
 import {Button, Input, Logo} from './index'
 import { useDispatch } from 'react-redux'
 import authService, { AuthService } from '../appwrite/auth'
@@ -15,20 +15,25 @@ function Login() {
   const login = async(data) => {
     setError("")
     try {
-      session = await authService.login(data)
+      const session = await authService.login(data)
       if (session){
         const userData = await authService.getCurrentUser()
-        if (userData) dispatch(authlogin(userData));
-         navigate('/')
+        if (userData){
+          dispatch(authLogin(userData));
+           console.log("user logged in", userData)
+         
+        }
       }
     } catch (error) {
       setError(error.message)
     }
   }
+
+  
    
   return (
     <div className=' flex items-center justify-center w-full'>
-      <div className=' mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10'>
+      <div className=' mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10 mb-12 hover:shadow-2xl'>
       <div className='mb-2 flex justify-center'>
         <span className=' inline-block w-full max-w-[100px]'>
           <Logo width='100%'/>
@@ -54,7 +59,7 @@ function Login() {
             <Input
             label = "Email:"
             placeholder = "Enter your email"
-            className='ml-13 px-2 py-0.5'
+            className='ml-13 px-2 py-0.5 w-xs'
             type = "email"
             {...register("email", {
               required: true,
@@ -65,7 +70,7 @@ function Login() {
             <Input
             label = "Password:"
             placeholder = "Enter password"
-            className="ml-6 px-2 py-0.5"
+            className="ml-6 px-2 py-0.5 w-xs"
             type = "password"
             {...register("password", {
               required:true,
@@ -73,7 +78,7 @@ function Login() {
             />
             <Button
             type = "submit"
-            className='w-full'>Sign In</Button>
+            className='w-full hover:bg-amber-400'>Sign In</Button>
           </div>
         </form>
       </div>

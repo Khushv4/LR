@@ -27,8 +27,8 @@ function SignUp() {
     }
   }
   return (
-    <div className="flex items-center justify-center">
-            <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
+    <div className="flex items-center justify-center w-full ">
+            <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10 pb-12 hover:shadow-2xl`}>
             <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
                         <Logo width="100%" />
@@ -51,7 +51,7 @@ function SignUp() {
                 <div className='space-y-4 center'>
                   <Input
                   label = "Full Name:"
-                  className='ml-5 px-2 py-0.5'
+                  className='ml-5 px-2 py-0.5 w-xs'
                   placeholder = "Enter your name"
                   {...register("name", {
                     required:true,
@@ -62,7 +62,7 @@ function SignUp() {
                   <Input
                               label = "Email:"
                               placeholder = "Enter your email"
-                              className='ml-13 px-2 py-0.5'
+                              className='ml-13 px-2 py-0.5 w-xs'
                               type = "email"
                               {...register("email", {
                                 required: true,
@@ -73,14 +73,14 @@ function SignUp() {
                               <Input
                               label="Password:"
                               type="password"
-                              className="ml-6 px-2 py-0.5"
+                              className="ml-6 px-2 py-0.5 w-xs"
                               placeholder="Enter your password"
                               {...register("password", {
                                 required:true,
                               })}
                               />
 
-                              <Button type = "submit" className='w-full '>Create Account</Button>
+                              <Button type = "submit" className='w-full hover:bg-amber-400 '>Create Account</Button>
 
                 </div>
 

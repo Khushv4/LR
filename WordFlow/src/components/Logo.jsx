@@ -1,8 +1,12 @@
 import React from 'react'
+import logo from '../assets/WordFlow.png'
 
-function Logo({width = '100px'}) {
+function Logo() {
   return (
-    <div>Logo</div>
+    <div className='w-20'>
+      <img src={logo} alt="logo"
+       />
+    </div>
   )
 }
 

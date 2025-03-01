@@ -16,11 +16,20 @@ function PostForm({post}) {
     }
   })
 
+
+  
   const navigate = useNavigate()
   const userData = useSelector((state)=>state.auth.userData);
+ 
+  
 
   console.log(userData)
   const submit = async(data)=>{
+    if (!userData) {
+      console.error("User data is missing! Please log in.");
+      return;
+    }
+
     if(post){
       const file = data.image[0]? await appwriteService.uploatFile(data.image[0]) : null;
 
@@ -44,7 +53,7 @@ function PostForm({post}) {
         data.featuredImage = fileId
         const dbPost = await appwriteService.createPost({
           ...data,
-          userId: userData?.$id || "defaultId"
+          userId: userData?.$id
         })
         if(dbPost){
           navigate(`/post/${dbPost.$id}`)
@@ -85,13 +94,13 @@ function PostForm({post}) {
                 <Input
                     label="Title :"
                     placeholder="Title"
-                    className="mb-4"
+                    className="ml-4 mb-5 w-xs"
                     {...register("title", { required: true })}
                 />
                 <Input
                     label="Slug :"
                     placeholder="Slug"
-                    className="mb-4"
+                    className="ml-4 mb-5 w-xs"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
@@ -103,7 +112,7 @@ function PostForm({post}) {
                 <Input
                     label="Featured Image :"
                     type="file"
-                    className="mb-4"
+                    className="mb-5 w-full"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
                 />
@@ -112,17 +121,17 @@ function PostForm({post}) {
                         <img
                             src={appwriteService.getFilePreview(post.featuredImage)}
                             alt={post.title}
-                            className="rounded-lg"
+                            className="rounded-lg w-10"
                         />
                     </div>
                 )}
                 <Select
                     options={["active", "inactive"]}
-                    label="Status"
-                    className="mb-4"
+                    label="Status :"
+                    className="mb-3"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full hover:bg-amber-400">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>
